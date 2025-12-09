@@ -1,10 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import Create, { TaskArr } from "@/components/Create";
+import Create from "@/components/Create";
 import List from "@/components/List";
 
-export default function page() {
+type TaskArr = {
+  time: number;
+  name: string;
+  done: boolean;
+  pin: boolean;
+};
+
+export default function Page() {
   const [tasks, setTasks] = useState<TaskArr[]>([]);
 
   return (

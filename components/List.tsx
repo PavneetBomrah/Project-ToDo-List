@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CircleCheckBig, Pencil, Pin, PinOff, Trash2Icon } from "lucide-react";
 import type { Dispatch, SetStateAction } from "react";
 
-export type TaskArr = {
+type TaskArr = {
   time: number;
   name: string;
   done: boolean;
@@ -51,7 +51,9 @@ export default function List({ tasks, setTasks }: ListProps) {
   }
 
   function handleDelete(task: TaskArr) {
-    setTasks(prev => prev.filter(t => !(t.name === task.name && t.time === task.time)));
+    setTasks(prev =>
+      prev.filter(t => !(t.name === task.name && t.time === task.time))
+    );
   }
 
   return (

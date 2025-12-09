@@ -2,11 +2,15 @@
 
 import { ArrowRight } from "lucide-react";
 import { motion, useAnimationControls } from "framer-motion";
-import { useRef, FormEvent, MouseEvent } from "react";
+import {
+  useRef,
+  FormEvent,
+  MouseEvent,
+} from "react";
 import type { Dispatch, SetStateAction } from "react";
 
-export type TaskArr = {
-  time: number;   // using number because of Date.now()
+type TaskArr = {
+  time: number;   // using number because we store Date.now()
   name: string;
   done: boolean;
   pin: boolean;
@@ -22,12 +26,11 @@ export default function Create({ tasks, setTasks }: CreateProps) {
   const formRef = useRef<HTMLFormElement | null>(null);
 
   const addTask = (name: string) => {
-    const trimmed = name.trim();
-    if (!trimmed) return;
+    if (!name || name.trim() === "") return;
 
     setTasks(prev => [
       ...prev,
-      { time: Date.now(), name: trimmed, done: false, pin: false },
+      { time: Date.now(), name: name.trim(), done: false, pin: false },
     ]);
   };
 
@@ -71,7 +74,12 @@ export default function Create({ tasks, setTasks }: CreateProps) {
               animate={control}
               onClick={handleClick}
               whileHover={{ y: -5 }}
-              transition={{ duration: 1, delay: 0.5, repeat: Infinity, repeatType: "reverse" }}
+              transition={{
+                duration: 1,
+                delay: 0.5,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
             >
               <ArrowRight />
             </motion.div>
@@ -88,7 +96,12 @@ export default function Create({ tasks, setTasks }: CreateProps) {
               initial={{ x: 0, y: 0 }}
               animate={control}
               whileHover={{ y: -5 }}
-              transition={{ duration: 1, delay: 0.5, repeat: Infinity, repeatType: "reverse" }}
+              transition={{
+                duration: 1,
+                delay: 0.5,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
             >
               <ArrowRight />
             </motion.div>
