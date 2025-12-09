@@ -2,10 +2,15 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { CircleCheckBig, Pencil, Pin, PinOff, Trash2Icon } from 'lucide-react';
 import { useState } from 'react';
+import type {Dispatch,SetStateAction} from 'react'
+type TaskArr = {
+  time: Date;
+  name: string;
+  done: boolean;
+  pin: boolean;
+}
 
-export default function List({ tasks, setTasks }) {
-  const [openEdit,setOpenEdit] = useState(false)
-  const [newName,setNewName] = useState(false)
+export default function List({ tasks, setTasks }:{tasks:TaskArr,setTasks:Dispatch<SetStateAction<TaskArr[]>>}) {
   function handleDone(e){
     setTasks(pe=>pe.map((ne)=>ne.name == e.name && ne.time == e.time ?{...ne,done:!ne.done}:ne ))    
   }

@@ -3,8 +3,15 @@
 import { ArrowRight } from "lucide-react";
 import {motion, useAnimationControls} from 'framer-motion'
 import { useRef } from "react";
+import type { Dispatch, SetStateAction } from "react";
+type TaskArr = {
+  time: Date;
+  name: string;
+  done: boolean;
+  pin: boolean;
+}
 
-export default function Create({ tasks, setTasks }) {
+export default function Create({ tasks, setTasks }:{tasks:TaskArr,setTasks:Dispatch<SetStateAction<TaskArr[]>>}) {
   const control = useAnimationControls()
   const addTask = (name) => {
     if(!name || name.trim()=='') return
